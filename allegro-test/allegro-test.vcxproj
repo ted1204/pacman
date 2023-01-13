@@ -184,6 +184,7 @@
     <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_settings.c" />
     <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\shared.c" />
     <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\utility.c" />
+    <ClCompile Include="scene_winnig.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\game.h" />
@@ -196,6 +197,8 @@
     <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_settings.h" />
     <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\shared.h" />
     <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\utility.h" />
+    <ClInclude Include="scene_winnig.h" />
+    <ClInclude Include="winning.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
