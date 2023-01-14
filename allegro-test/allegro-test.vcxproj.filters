@@ -105,7 +105,7 @@
     <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\utility.c">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="scene_winnig.c">
+    <ClCompile Include="scene_win.c">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,10 +140,7 @@
     <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\utility.h">
       <Filter>來源檔案</Filter>
     </ClInclude>
-    <ClInclude Include="scene_winnig.h">
-      <Filter>標頭檔</Filter>
-    </ClInclude>
-    <ClInclude Include="winning.h">
+    <ClInclude Include="scene_win.h">
       <Filter>來源檔案</Filter>
     </ClInclude>
   </ItemGroup>

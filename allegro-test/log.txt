@@ -12,25 +12,7 @@ loaded image: Assets/settings.png
 loaded image: Assets/settings2.png
 loaded image: Assets/title.png
 Game start event loop
-Settings scene created
-Change scene from Menu to Settings
-loaded image: Assets/volumeup1.png
-loaded image: Assets/volumeup2.png
-loaded image: Assets/volumedown1.png
-loaded image: Assets/volumedown2.png
-loaded image: Assets/volumeup1.png
-loaded image: Assets/volumeup2.png
-loaded image: Assets/volumedown1.png
-loaded image: Assets/volumedown2.png
-loaded image: Assets/return1.png
-loaded image: Assets/return2.png
-loaded font: Assets/Minecraft.ttf with size 40
-Menu scene created
-Change scene from Settings to Menu
-loaded image: Assets/settings.png
-loaded image: Assets/settings2.png
-loaded image: Assets/title.png
-Key with keycode 216 down
+Key with keycode 215 down
 Key with keycode 67 down
 Start scene created
 Change scene from Menu to Start
@@ -58,21 +40,83 @@ creating ghost 3
 loaded image: Assets/ghost_flee.png
 loaded image: Assets/ghost_dead.png
 loaded image: Assets/ghost_move_blue.png
+Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 1 down
+Pacman eats Powerbean
+start powerup timer
+ghost 0 start flee
+ghost 1 start flee
+ghost 2 start flee
+ghost 3 start flee
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 23 down
 Key with keycode 1 down
 Key with keycode 23 down
 Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 4 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 23 down
+Pacman eats Powerbean
+start powerup timer
+ghost 0 start flee
+ghost 1 start flee
+ghost 2 start flee
+ghost 3 start flee
+Key with keycode 19 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 1 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 19 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 4 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 1 down
+Key with keycode 19 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 1 down
+Key with keycode 1 down
 Key with keycode 23 down
 Key with keycode 4 down
 Key with keycode 19 down
+Key with keycode 4 down
 Key with keycode 23 down
-Key with keycode 23 down
-Key with keycode 23 down
-collide with ghost
-
-Menu scene created
-Change scene from Start to Menu
-loaded image: Assets/settings.png
-loaded image: Assets/settings2.png
-loaded image: Assets/title.png
+Pacman eats Powerbean
+start powerup timer
+ghost 0 start flee
+ghost 1 start flee
+ghost 2 start flee
+ghost 3 start flee
+Key with keycode 19 down
 Window close button clicked
 Game end
