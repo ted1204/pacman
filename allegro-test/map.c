@@ -174,6 +174,9 @@ Map* create_map(const char* filepath) {
 				case '.':
 					M->beansCount++;
 					break;
+				case 'P':
+					M->beansCount++;
+					break;
 				default:
 					break;
 				}

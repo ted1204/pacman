@@ -84,6 +84,7 @@ void ghost_red_move_script(Ghost* ghost, Map* M, Pacman* pacman) {
 		case GO_IN:
 			ghost_move_script_GO_IN(ghost, M);
 			if (M->map[ghost->objData.Coord.y][ghost->objData.Coord.x] == 'B') {
+				game_log("ghost %d is free now", ghost->typeFlag);
 				ghost->status = GO_OUT;
 				ghost->speed = 2;
 			}

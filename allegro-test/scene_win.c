@@ -1,4 +1,4 @@
-/*
+
 #include "scene_win.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,15 +13,15 @@
 #include "scene_menu.h"
 #include "utility.h"
 #include "shared.h"
-*/
+
 
 /* Internal Variables*/
-/*
+
 static ALLEGRO_BITMAP* gameWin = NULL;
-static ALLEGRO_SAMPLE_ID menuBGM;
+static ALLEGRO_SAMPLE_ID winBGM;
 static int gameWinW;
 static int gameWinH;
-*/
+
 
 // [HACKATHON 3]
 // TARGET : use a clickable button to enter setting scene.
@@ -32,7 +32,7 @@ static int gameWinH;
 //	TODO: Declare variable for button
 //	Uncomment and fill the code below
 // static ... btnSettings;
-/*
+
 static void init() {
 
 	// [HACKATHON 3-2]
@@ -43,13 +43,13 @@ static void init() {
 	gameWin = load_bitmap("Assets/win.png");
 	gameWinW = al_get_bitmap_width(gameWin);
 	gameWinH = al_get_bitmap_height(gameWin);
-	stop_bgm(menuBGM);
-	menuBGM = play_bgm(themeMusic, music_volume);
+	stop_bgm(winBGM);
+	winBGM = play_bgm(winMusic, music_volume);
 
 }
-*/
 
-/*
+
+
 static void draw() {
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -89,7 +89,7 @@ static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
 	//	Uncomment and fill the code below
 	//	 btnSettings.hovered = ???(btnSettings, mouse_x, mouse_y);
 }
-*/
+
 
 
 //	[HACKATHON 3-8]
@@ -108,17 +108,17 @@ static void on_mouse_down() {
 		game_change_scene(...);
 }
 */
-/*
+
+
 static void destroy() {
-	stop_bgm(menuBGM);
+	stop_bgm(winBGM);
 	al_destroy_bitmap(gameWin);
 	//	[HACKATHON 3-10]
 	//	TODO: Destroy button images
 	//	Uncomment and fill the code below
 	
 }
-*/
-/*
+
 static void on_key_down(int keycode) {
 
 	switch (keycode) {
@@ -129,7 +129,7 @@ static void on_key_down(int keycode) {
 		break;
 	}
 }
-*/
+
 
 // TODO: Add more event callback functions such as update, ...
 
@@ -138,8 +138,8 @@ static void on_key_down(int keycode) {
 // Define your normal function prototypes below.
 
 // The only function that is shared across files.
-/*
-Scene scene__win_create(void) {
+
+Scene scene_win_create(void) {
 
 	Scene scene;
 	memset(&scene, 0, sizeof(Scene));
@@ -150,11 +150,10 @@ Scene scene__win_create(void) {
 	scene.on_key_down = &on_key_down;
 	scene.on_mouse_move = &on_mouse_move;
 	// [HACKATHON 3-9]
-*/
+
 	// TODO: Register on_mouse_down.
-	// Uncomment the code below.
-	/*
-	scene.on_mouse_down = &on_mouse_down;
+	// Uncomment the code below
+	//scene.on_mouse_down = &on_mouse_down;
 	// -------------------------------------
 
 
@@ -163,4 +162,3 @@ Scene scene__win_create(void) {
 	game_log("Win scene created");
 	return scene;
 }
-	*/

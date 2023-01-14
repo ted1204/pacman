@@ -20,6 +20,7 @@ extern const int block_width,  block_height;
 extern ALLEGRO_TIMER* power_up_timer;
 extern const int power_up_duration;
 extern game_main_Score;
+extern Pacman* pman;
 /* Internal variables */
 static const int fix_draw_pixel_offset_x = -3;
 static const int fix_draw_pixel_offset_y = -3;
@@ -330,13 +331,17 @@ void ghost_toggle_FLEE(Ghost* ghost, bool setFLEE) {
 	// You are allowed to do your own implementation of power bean system.
 	
 		if(setFLEE){
+			pman->speed = 4;
 			if(ghost->status == FREEDOM){
 				game_log("ghost %d start flee", ghost->typeFlag);
 				ghost->status = FLEE;
 				ghost->speed = 1;
+				
 			}
 		}else{
+			pman->speed = 2;
 			if (ghost->status == FLEE) {
+				game_log("ghost %d is free now", ghost->typeFlag);
 				ghost->status = FREEDOM;
 				ghost->speed = 2;
 			}

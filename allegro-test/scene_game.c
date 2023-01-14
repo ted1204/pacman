@@ -27,9 +27,9 @@ int bean_ate = 0;
 int game_main_Score = 0;
 bool game_over = false;
 bool game_win = false;
+Pacman* pman;
 
 /* Internal variables*/
-static Pacman* pman;
 static Map* basic_map;
 static Ghost** ghosts;
 bool debug_mode = false;
@@ -107,6 +107,7 @@ static void step(void) {
 	}
 }
 static void checkItem(void) {
+	
 	int Grid_x = pman->objData.Coord.x, Grid_y = pman->objData.Coord.y;
 	if (Grid_y >= basic_map->row_num - 1 || Grid_y <= 0 || Grid_x >= basic_map->col_num - 1 || Grid_x <= 0)
 		return;
@@ -119,7 +120,7 @@ static void checkItem(void) {
 		pacman_eatItem(pman, '.');
 		game_main_Score += 10;
 		bean_ate++;
-		if (bean_ate == 2) {
+		if (bean_ate == basic_map->beansCount) {//
 			game_win = true;
 		}
 		break;
@@ -128,8 +129,7 @@ static void checkItem(void) {
 		game_log("Pacman eats Powerbean");
 		game_main_Score += 100;
 		bean_ate++;
-		pman->powerUp = true;
-		cheat_mode = true;
+		pman->powerUp = true;	
 		al_set_timer_count(power_up_timer, 0);
 		al_start_timer(power_up_timer);
 		game_log("start powerup timer");
@@ -147,6 +147,18 @@ static void checkItem(void) {
 	basic_map->map[Grid_y][Grid_x] = ' ';
 }
 static void status_update(void) {
+	/*
+	if (pman->powerUp) {
+		pman->speed = 3;
+	}
+	else {
+		pman->speed = 2;
+	}
+	*/
+	if (al_get_timer_count(power_up_timer) >= power_up_duration) {
+		al_stop_timer(power_up_timer);
+		pman->powerUp = false;
+	}
 	for (int i = 0; i < GHOST_NUM; i++) {
 		if (ghosts[i]->status == GO_IN)
 			continue;
@@ -162,13 +174,8 @@ static void status_update(void) {
 		// You should have some branch here if you want to implement power bean mode.
 		// Uncomment Following Code
 		if (ghosts[i]->status == FLEE) {
-			if (al_get_timer_count(power_up_timer) >= power_up_duration) {
-				al_stop_timer(power_up_timer);
-				cheat_mode = 0;
-				pman->powerUp = false;
-				for (int i = 0; i < GHOST_NUM; ++i) {
-					ghost_toggle_FLEE(ghosts[i], false);
-				}
+			if (!pman->powerUp) {
+				ghost_toggle_FLEE(ghosts[i], false);
 			}
 			else if (collision_of_pacman_and_ghost) {
 				ghost_collided(ghosts[i]);
@@ -203,8 +210,8 @@ static void update(void) {
 		return;
 	}
 	else if (game_win) {
+		game_change_scene(scene_win_create());
 		/*
-		game_change_scene(scene_win)
 		*/
 	}
 
