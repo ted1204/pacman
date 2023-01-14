@@ -13,8 +13,8 @@ ALLEGRO_SAMPLE* PACMAN_MOVESOUND = NULL;
 ALLEGRO_SAMPLE* PACMAN_DEATH_SOUND = NULL;
 ALLEGRO_FONT* menuFont = NULL;
 int fontSize = 30;
-float music_volume = 0.5;
-float effect_volume = 0.5;
+float music_volume = 2.5;
+float effect_volume = 2.5;
 bool gameDone = false;
 
 /*

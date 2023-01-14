@@ -85,11 +85,12 @@ ALLEGRO_BITMAP* load_bitmap_resized(const char* filename, int w, int h) {
 // [HACKATHON 3-5]
 // TODO: Define bool pnt_in_rect(int px, int py, RecArea field)
 // Uncomment and fill in the code below.
-/*
+
 bool pnt_in_rect(int px, int py, RecArea field) {
-	return ???;
+	if((px < field.x) || (px > field.x + field.w) || (py < field.y) || (py > field.y + field.h)) return false;
+	return true;
 }
-*/
+
 
 void setRecArea(RecArea* RA, float x, float y, float w, float h) {
 	RA->x = x;
@@ -184,7 +185,7 @@ uint32_t generateRandomNumber(uint32_t a, uint32_t b) {
 	// NOTODO
 	if (b < a) 
 		game_abort("Error in RandomNumber, b is less than a");
-//	srand(time(NULL));
+	srand(time(NULL));
 	return rand() % (b - a + 1) + a;
 }
 double generateRandomFloat() {

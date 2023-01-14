@@ -1,29 +1,34 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
 #include <string.h>
+#include <stdio.h>
 #include "game.h"
 #include "shared.h"
 #include "utility.h"
 #include "scene_game.h"
+#include "scene_win.h"
 #include "scene_menu.h"
 #include "pacman_obj.h"
 #include "ghost.h"
 #include "map.h"
 
 
+
 // [HACKATHON 2-0]
 // Just modify the GHOST_NUM to 1
-#define GHOST_NUM 0 
+#define GHOST_NUM 4 
 /* global variables*/
 extern const uint32_t GAME_TICK_CD;
 extern uint32_t GAME_TICK;
 extern ALLEGRO_TIMER* game_tick_timer;
+ALLEGRO_TIMER* power_up_timer;
+const int power_up_duration = 10;
+int bean_ate = 0;
 int game_main_Score = 0;
 bool game_over = false;
+bool game_win = false;
 
 /* Internal variables*/
-static ALLEGRO_TIMER* power_up_timer;
-static const int power_up_duration = 10;
 static Pacman* pman;
 static Map* basic_map;
 static Ghost** ghosts;
@@ -48,7 +53,7 @@ static void init(void) {
 	game_over = false;
 	game_main_Score = 0;
 	// create map
-	basic_map = create_map(NULL);
+	basic_map = create_map("Assets / map_nthu.txt");
 	// [TODO]
 	// Create map from .txt file and design your own map !!
 	// basic_map = create_map("Assets/map_nthu.txt");
@@ -64,9 +69,9 @@ static void init(void) {
 	// allocate ghost memory
 	// [HACKATHON 2-1]
 	// TODO: Allocate dynamic memory for ghosts array.
-	/*
-	ghosts = (...)malloc(sizeof(...) * GHOST_NUM)
-	*/
+	
+	ghosts = (Ghost**)malloc(sizeof(Ghost*) * GHOST_NUM);
+	
 	if(!ghosts){
 		game_log("We haven't create any ghosts!\n");
 	}
@@ -75,12 +80,12 @@ static void init(void) {
 		// TODO: create a ghost.
 		// Try to look the definition of ghost_create and figure out what should be placed here.
 		for (int i = 0; i < GHOST_NUM; i++) {
-			/*
+			
 			game_log("creating ghost %d\n", i);
-			ghosts[i] = ghost_create(...);  
+			ghosts[i] = ghost_create(i);  
 			if (!ghosts[i])
 				game_abort("error creating ghost\n");
-			*/
+			
 		}
 	}
 	GAME_TICK = 0;
@@ -107,21 +112,39 @@ static void checkItem(void) {
 		return;
 	// [HACKATHON 1-3]
 	// TODO: check which item you are going to eat and use `pacman_eatItem` to deal with it.
-	/*
-	switch (basic_map->map...)
+	
+	switch (basic_map->map[Grid_y][Grid_x])
 	{
 	case '.':
-		pacman_eatItem(...);
-	default:
+		pacman_eatItem(pman, '.');
+		game_main_Score += 10;
+		bean_ate++;
+		if (bean_ate == 2) {
+			game_win = true;
+		}
 		break;
+	case 'P':
+		pacman_eatItem(pman, 'P');
+		game_log("Pacman eats Powerbean");
+		game_main_Score += 100;
+		bean_ate++;
+		pman->powerUp = true;
+		cheat_mode = true;
+		al_set_timer_count(power_up_timer, 0);
+		al_start_timer(power_up_timer);
+		game_log("start powerup timer");
+		for (int i = 0; i < GHOST_NUM; ++i) {
+			ghost_toggle_FLEE(ghosts[i], true);
+		}
+		break;
+	default:
+		break;	
 	}
-	*/
+	
 	// [HACKATHON 1-4]
 	// erase the item you eat from map
 	// be careful no erasing the wall block.
-	/*
-		basic_map->map...;
-	*/
+	basic_map->map[Grid_y][Grid_x] = ' ';
 }
 static void status_update(void) {
 	for (int i = 0; i < GHOST_NUM; i++) {
@@ -129,13 +152,29 @@ static void status_update(void) {
 			continue;
 		// [TODO]
 		// use `getDrawArea(..., GAME_TICK_CD)` and `RecAreaOverlap(..., GAME_TICK_CD)` functions to detect
+		int collision_of_pacman_and_ghost = 0;
+		if (RecAreaOverlap(getDrawArea(pman->objData, GAME_TICK_CD), getDrawArea(ghosts[i]->objData, GAME_TICK_CD))) {
+			collision_of_pacman_and_ghost = 1;
+		}
 		// if pacman and ghosts collide with each other.
 		// And perform corresponding operations.
 		// [NOTE]
 		// You should have some branch here if you want to implement power bean mode.
 		// Uncomment Following Code
-		/*
-		if(!cheat_mode and collision of pacman and ghost)
+		if (ghosts[i]->status == FLEE) {
+			if (al_get_timer_count(power_up_timer) >= power_up_duration) {
+				al_stop_timer(power_up_timer);
+				cheat_mode = 0;
+				pman->powerUp = false;
+				for (int i = 0; i < GHOST_NUM; ++i) {
+					ghost_toggle_FLEE(ghosts[i], false);
+				}
+			}
+			else if (collision_of_pacman_and_ghost) {
+				ghost_collided(ghosts[i]);
+			}
+		}
+		else if (!cheat_mode && collision_of_pacman_and_ghost)
 		{
 			game_log("collide with ghost\n");
 			al_rest(1.0);
@@ -143,19 +182,30 @@ static void status_update(void) {
 			game_over = true;
 			break;
 		}
-		*/
+				
 	}
 }
 
 static void update(void) {
-
+	long long pman_die_duration = 128;
 	if (game_over) {
 		/*
 			[TODO]
 			start pman->death_anim_counter and schedule a game-over event (e.g change scene to menu) after Pacman's death animation finished
 			game_change_scene(...);
-		*/
+		*/	
+		al_start_timer(pman->death_anim_counter);
+		if (al_get_timer_count(pman->death_anim_counter) == pman_die_duration) {			
+			al_stop_timer(pman->death_anim_counter);
+			game_change_scene(scene_menu_create());
+			bean_ate = 0;
+		}
 		return;
+	}
+	else if (game_win) {
+		/*
+		game_change_scene(scene_win)
+		*/
 	}
 
 	step();
@@ -174,9 +224,14 @@ static void draw(void) {
 	//	[TODO]
 	//	Draw scoreboard, something your may need is sprinf();
 	/*
-		al_draw_text(...);
 	*/
-
+	al_draw_textf(
+		menuFont,
+		al_map_rgb(255, 255, 255),
+		120, 12,
+		ALLEGRO_ALIGN_CENTER,
+		"scoreboard : %d", game_main_Score
+	);
 	draw_map(basic_map);
 
 	pacman_draw(pman);
@@ -225,6 +280,7 @@ static void destroy(void) {
 	/*
 		[TODO]
 		free map array, Pacman and ghosts
+		free(scoreboard)
 	*/
 }
 

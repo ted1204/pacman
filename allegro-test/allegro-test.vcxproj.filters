@@ -63,84 +63,87 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\Allegro5Template-master\Final_Codes\Assets\map_nthu.txt" />
+    <Text Include="log.txt">
+      <Filter>來源檔案</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\..\Allegro5Template-master\Final_Codes\Assets\Minecraft.ttf" />
     <Font Include="..\..\Allegro5Template-master\Final_Codes\Assets\OpenSans-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\game.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\ghost.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\ghost_red_move_script.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\main.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\map.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\pacman_obj.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_game.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_menu.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_menu_object.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_settings.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\shared.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\utility.c">
-      <Filter>來源檔案</Filter>
-    </ClCompile>
     <ClCompile Include="scene_win.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="game.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="ghost.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="ghost_red_move_script.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="map.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="pacman_obj.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="scene_game.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="scene_menu.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="scene_menu_object.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="scene_settings.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="shared.c">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
+    <ClCompile Include="utility.c">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\game.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\ghost.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\map.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\pacman_obj.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_game.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_menu.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_menu_object.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\scene_settings.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\shared.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Allegro5Template-master (1)\Allegro5Template-master\Final_Codes\Src\utility.h">
-      <Filter>來源檔案</Filter>
-    </ClInclude>
     <ClInclude Include="scene_win.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="ghost.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="pacman_obj.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_game.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_menu.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_menu_object.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_settings.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="shared.h">
+      <Filter>來源檔案</Filter>
+    </ClInclude>
+    <ClInclude Include="utility.h">
       <Filter>來源檔案</Filter>
     </ClInclude>
   </ItemGroup>

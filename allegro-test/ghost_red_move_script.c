@@ -17,13 +17,22 @@ static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
 	// [HACKATHON 2-4]
 	// Uncomment the following code and finish pacman picking random direction.
 
-	/*
 	static Directions proba[4]; // possible movement
 	int cnt = 0;
 	for (Directions i = 1; i <= 4; i++)
-		if (ghost_movable(...)) 	proba[cnt++] = i;
-	ghost_NextMove(ghost, proba[pick a reasonable random number]);
-	*/
+		if (ghost_movable(ghost, M, i, true)) {
+			if(ghost->objData.preMove + i != 5) proba[cnt++] = i;
+		}
+	if (cnt == 0) ghost_NextMove(ghost, 5 - ghost->objData.preMove);
+	else ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 1)]);
+	/*
+	
+	static Directions proba[4]; // possible movement
+	int cnt = 0;
+	for (Directions i = 1; i <= 4; i++)
+		if (ghost_movable(ghost, M, i, 1)) 	proba[cnt++] = i;
+	ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 1)]);/*pick a reasonable random number*/
+	
 
 	// [TODO] (Not in Hackathon) 
 	// Description:
@@ -112,3 +121,9 @@ void ghost_red_move_script(Ghost* ghost, Map* M, Pacman* pacman) {
 		ghost->objData.facing = ghost->objData.preMove;
 		ghost->objData.moveCD = GAME_TICK_CD;
 }
+/*
+void ghost_pink_move_script(Ghost* ghost, Map* M, Pacman* pacman) {
+	if (!movetime(ghost->speed)) return;
+	ghost_NextMove(ghost, 1);
+}
+*/
