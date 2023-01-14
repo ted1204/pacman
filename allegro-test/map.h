@@ -6,6 +6,8 @@
 #define MAX_WALL_NUM_H 100
 extern const int block_width,  block_height;
 extern const int map_offset_x, map_offset_y ;
+extern int teleport_location[2][2];
+
 typedef struct Map{
 	int row_num, col_num;
 	int wallnum;

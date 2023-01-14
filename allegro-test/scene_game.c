@@ -22,7 +22,10 @@ extern const uint32_t GAME_TICK_CD;
 extern uint32_t GAME_TICK;
 extern ALLEGRO_TIMER* game_tick_timer;
 ALLEGRO_TIMER* power_up_timer;
+ALLEGRO_TIMER* speed_up_timer;
 const int power_up_duration = 10;
+const int speed_up_duration = 8;
+
 int bean_ate = 0;
 int game_main_Score = 0;
 bool game_over = false;
@@ -93,13 +96,20 @@ static void init(void) {
 	render_init_screen();
 	power_up_timer = al_create_timer(1.0f); // 1 tick / sec
 	if (!power_up_timer)
-		game_abort("Error on create timer\n");
+		game_abort("Error on create powerup timer\n");
+	speed_up_timer = al_create_timer(1.0f); // 1 tick / sec
+	if (!speed_up_timer)
+		game_abort("Error on create speedup timer\n");
 	return ;
 }
 
 static void step(void) {
-	if (pman->objData.moveCD > 0)
+	if (pman->objData.moveCD >= pman->speed) {
 		pman->objData.moveCD -= pman->speed;
+	}
+	else {
+		pman->objData.moveCD = 0;
+	}
 	for (int i = 0; i < GHOST_NUM; i++) {
 		// important for movement
 		if (ghosts[i]->objData.moveCD > 0)
@@ -114,16 +124,18 @@ static void checkItem(void) {
 	// [HACKATHON 1-3]
 	// TODO: check which item you are going to eat and use `pacman_eatItem` to deal with it.
 	
+	if (bean_ate == basic_map->beansCount) {//
+		game_win = true;
+	}
 	switch (basic_map->map[Grid_y][Grid_x])
 	{
 	case '.':
 		pacman_eatItem(pman, '.');
 		game_main_Score += 10;
 		bean_ate++;
-		if (bean_ate == basic_map->beansCount) {//
-			game_win = true;
-		}
+		basic_map->map[Grid_y][Grid_x] = ' ';
 		break;
+
 	case 'P':
 		pacman_eatItem(pman, 'P');
 		game_log("Pacman eats Powerbean");
@@ -136,6 +148,42 @@ static void checkItem(void) {
 		for (int i = 0; i < GHOST_NUM; ++i) {
 			ghost_toggle_FLEE(ghosts[i], true);
 		}
+		basic_map->map[Grid_y][Grid_x] = ' ';
+		break;
+	case 'T':
+		if ((Grid_x == teleport_location[0][1]) && (Grid_y == teleport_location[0][0])) {
+		game_log("check at teleport 0");
+			if (pman->objData.facing == RIGHT) {
+				pman->objData.Coord.x = teleport_location[1][1] + 1;
+				pman->objData.Coord.y = teleport_location[1][0];
+			}
+			else if (pman->objData.facing == LEFT) {
+				pman->objData.Coord.x = teleport_location[1][1] - 1;
+				pman->objData.Coord.y = teleport_location[1][0];
+			}
+		}
+		else if ((Grid_x == teleport_location[1][1]) && (Grid_y == teleport_location[1][0])) {
+			game_log("check at teleport 1");
+			if (pman->objData.facing == RIGHT) {
+				pman->objData.Coord.x = teleport_location[0][1] + 1;
+				pman->objData.Coord.y = teleport_location[0][0];
+			}
+			else if (pman->objData.facing == LEFT) {
+				pman->objData.Coord.x = teleport_location[0][1] - 1;
+				pman->objData.Coord.y = teleport_location[0][0];
+			}
+		}
+		break;
+	case 'S':
+		pacman_eatItem(pman, 'S');
+		game_log("Pacman eats Speedbean");
+		game_main_Score += 100;
+		bean_ate++;
+		al_set_timer_count(speed_up_timer, 0);
+		al_start_timer(speed_up_timer);
+		pman->speed = 3;
+		game_log("start powerup timer");
+		basic_map->map[Grid_y][Grid_x] = ' ';
 		break;
 	default:
 		break;	
@@ -144,7 +192,6 @@ static void checkItem(void) {
 	// [HACKATHON 1-4]
 	// erase the item you eat from map
 	// be careful no erasing the wall block.
-	basic_map->map[Grid_y][Grid_x] = ' ';
 }
 static void status_update(void) {
 	/*
@@ -155,6 +202,10 @@ static void status_update(void) {
 		pman->speed = 2;
 	}
 	*/
+	if (al_get_timer_count(speed_up_timer) >= speed_up_duration) {
+		al_stop_timer(speed_up_timer);
+		pman->speed = 2;
+	}
 	if (al_get_timer_count(power_up_timer) >= power_up_duration) {
 		al_stop_timer(power_up_timer);
 		pman->powerUp = false;
@@ -235,8 +286,8 @@ static void draw(void) {
 	al_draw_textf(
 		menuFont,
 		al_map_rgb(255, 255, 255),
-		120, 12,
-		ALLEGRO_ALIGN_CENTER,
+		20, 12,
+		ALLEGRO_ALIGN_LEFT,
 		"scoreboard : %d", game_main_Score
 	);
 	draw_map(basic_map);

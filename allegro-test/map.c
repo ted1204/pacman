@@ -11,11 +11,13 @@
 const int block_width = 21, block_height = 21;			// the pixel size of a "block"
 const int map_offset_x = 25, map_offset_y = 50;			// pixel offset of where to start draw map
 const int four_probe[4][2] = { { 1, 0 }, { 0, 1 }, { -1,0 }, { 0, -1 } };
-
+int teleport_location[2][2];
 /* Declare static function prototypes. */
 static void draw_block_index(Map* M, int row, int col);
 static void draw_bean(Map* M, const int row, const int col);
 static void draw_power_bean(Map* M, const int row, const int col);
+static void draw_teleport_bean(Map* M, const int row, const int col);
+static void draw_speed_bean(Map* M, const int row, const int col);
 
 const char* nthu_map[] = {
 	"#####################################",
@@ -151,7 +153,7 @@ Map* create_map(const char* filepath) {
 		'B' -> room of ghost
 		'P' -> Power Pellets
 	*/
-
+	int idx = 0;
 	M->wallnum = M->beansCount = 0;
 	for (int i = 0; i < M->row_num; i++) {
 		for (int j = 0; j < M->col_num; j++) {
@@ -175,6 +177,14 @@ Map* create_map(const char* filepath) {
 					M->beansCount++;
 					break;
 				case 'P':
+					M->beansCount++;
+					break;
+				case 'T':
+					teleport_location[idx][0] = i;
+					teleport_location[idx][1] = j;
+					idx++;
+					break;
+				case 'S':
 					M->beansCount++;
 					break;
 				default:
@@ -227,10 +237,16 @@ void draw_map(Map const* M) {
 				/*
 				*/
 			case 'P':
-					draw_power_bean(M, row, col);
-					break;
+				draw_power_bean(M, row, col);
+				break;
 			case '.':
 				draw_bean(M, row, col);
+				break;
+			case 'T':
+				draw_teleport_bean(M, row, col);
+				break;
+			case 'S':
+				draw_speed_bean(M, row, col);
 				break;
 			default:
 				break;
@@ -318,6 +334,13 @@ static void draw_power_bean(Map* M, const int row, const int col) {
 	al_draw_filled_circle(map_offset_x + col * block_width + block_width / 2.0, map_offset_y + row * block_height + block_height / 2.0, block_width / 3.0, al_map_rgb(234, 178, 38));
 }
 
+static void draw_speed_bean(Map* M, const int row, const int col) {
+	al_draw_filled_circle(map_offset_x + col * block_width + block_width / 2.0, map_offset_y + row * block_height + block_height / 2.0, block_width / 3.0, al_map_rgb(222, 236, 25));
+}
+
+static void draw_teleport_bean(Map* M, const int row, const int col) {
+	al_draw_circle(map_offset_x + col * block_width + block_width / 2.0, map_offset_y + row * block_height + block_height / 2.0, block_width / 3.0, al_map_rgb(25, 201, 236), block_width / 5.0);
+}
 
 bool is_wall_block(Map* M, int index_x, int index_y) {
 	if (index_x < 0 || index_x >= M->col_num || index_y < 0 || index_y >= M->row_num)

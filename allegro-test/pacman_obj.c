@@ -23,42 +23,43 @@ extern uint32_t GAME_TICK_CD;
 extern bool game_over;
 extern float effect_volume;
 
+
 /* Declare static function */
 static bool pacman_movable(Pacman* pacman, Map* M, Directions targetDirec) {
 	// [HACKATHON 1-2]
-	// TODO: Determine if the current direction is movable.
-	// That is to say, your pacman shouldn't penetrate 'wall' and 'room'
-	// , where room is reserved for ghost to set up.
-	// 1) For the current direction `targetDirec`, use pre-implemented function
-	// `is_wall_block` and `is_room_block` to check if the block is wall or room. (they are both defined in map.c)
-	// 2) the coordinate data of pacman is stored in pacman->objData.Coord
-	// it is a self-defined pair IntInt type. Trace the code and utilize it.
+// TODO: Determine if the current direction is movable.
+// That is to say, your pacman shouldn't penetrate 'wall' and 'room'
+// , where room is reserved for ghost to set up.
+// 1) For the current direction `targetDirec`, use pre-implemented function
+// `is_wall_block` and `is_room_block` to check if the block is wall or room. (they are both defined in map.c)
+// 2) the coordinate data of pacman is stored in pacman->objData.Coord
+// it is a self-defined pair IntInt type. Trace the code and utilize it.
 
-	
-	int x = pacman->objData.Coord.x; int y = pacman->objData.Coord.y;
-	
-	switch (targetDirec)
-	{
-	case UP:
-		y -= 1;
-		break;
-	case DOWN:
-		y += 1;
-		break;
-	case LEFT:
-		x -= 1;
-		break;
-	case RIGHT:
-		x += 1;
-		break;
-	default:
-		// for none UP, DOWN, LEFT, RIGHT direction u should return false.
-		return false;
-	}
-	if (is_wall_block(M, x, y) || is_room_block(M, x, y))
-		return false;
-	
-	return true;
+
+int x = pacman->objData.Coord.x; int y = pacman->objData.Coord.y;
+
+switch (targetDirec)
+{
+case UP:
+	y -= 1;
+	break;
+case DOWN:
+	y += 1;
+	break;
+case LEFT:
+	x -= 1;
+	break;
+case RIGHT:
+	x += 1;
+	break;
+default:
+	// for none UP, DOWN, LEFT, RIGHT direction u should return false.
+	return false;
+}
+if (is_wall_block(M, x, y) || is_room_block(M, x, y))
+return false;
+
+return true;
 }
 
 Pacman* pacman_create() {
@@ -103,10 +104,10 @@ void pacman_destroy(Pacman* pman) {
 		free pacman resource
 		...
 	*/
-		al_destroy_bitmap(pman->move_sprite);
-		al_destroy_bitmap(pman->die_sprite);
-		al_destroy_timer(pman->death_anim_counter);
-		free(pman);
+	al_destroy_bitmap(pman->move_sprite);
+	al_destroy_bitmap(pman->die_sprite);
+	al_destroy_timer(pman->death_anim_counter);
+	free(pman);
 }
 
 
@@ -126,7 +127,6 @@ void pacman_draw(Pacman* pman) {
 		draw_region, draw_region, 0
 	);
 	*/
-	
 	int offset = 0;
 	if (game_over) {
 		/*
@@ -269,11 +269,14 @@ void pacman_eatItem(Pacman* pacman, const char Item) {
 		stop_bgm(PACMAN_MOVESOUND_ID);
 		PACMAN_MOVESOUND_ID = play_audio(PACMAN_MOVESOUND, effect_volume);
 		break;
-	case 'P':
-		
+	case 'P':		
 		stop_bgm(PACMAN_MOVESOUND_ID);
 		PACMAN_MOVESOUND_ID = play_audio(PACMAN_MOVESOUND, effect_volume);
-		
+		break;
+	case 'S':
+		stop_bgm(PACMAN_MOVESOUND_ID);
+		PACMAN_MOVESOUND_ID = play_audio(PACMAN_MOVESOUND, effect_volume);
+		break;
 	default:
 		break;
 	}
