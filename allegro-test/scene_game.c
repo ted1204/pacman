@@ -28,6 +28,7 @@ const int speed_up_duration = 8;
 
 int bean_ate = 0;
 int game_main_Score = 0;
+int scoreboard[10];
 bool game_over = false;
 bool game_win = false;
 Pacman* pman;
@@ -340,6 +341,8 @@ static void destroy(void) {
 		free map array, Pacman and ghosts
 		free(scoreboard)
 	*/
+	free(speed_up_timer);
+	free(power_up_timer);
 }
 
 static void on_key_down(int key_code) {

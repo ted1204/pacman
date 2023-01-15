@@ -13,6 +13,7 @@ loaded image: Assets/settings.png
 loaded image: Assets/settings2.png
 loaded image: Assets/title.png
 Game start event loop
+Key with keycode 216 down
 Key with keycode 67 down
 Start scene created
 Change scene from Menu to Start
@@ -40,62 +41,35 @@ creating ghost 3
 loaded image: Assets/ghost_flee.png
 loaded image: Assets/ghost_dead.png
 loaded image: Assets/ghost_move_blue.png
-Key with keycode 216 down
-Key with keycode 1 down
-Pacman eats Powerbean
-start powerup timer
-Key with keycode 19 down
-Key with keycode 1 down
-Key with keycode 19 down
-Key with keycode 1 down
-Pacman eats Speedbean
-start powerup timer
-Key with keycode 23 down
 Key with keycode 4 down
-check at teleport 0
 Key with keycode 1 down
-Key with keycode 23 down
-check at teleport 1
 Key with keycode 4 down
-Key with keycode 4 down
+Key with keycode 1 down
 Pacman eats Powerbean
 start powerup timer
 ghost 0 start flee
 ghost 1 start flee
 ghost 2 start flee
 ghost 3 start flee
-Key with keycode 19 down
-Key with keycode 4 down
-Key with keycode 19 down
 Key with keycode 4 down
 Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 4 down
+Key with keycode 23 down
+Key with keycode 4 down
+check at teleport 1
 Key with keycode 1 down
+Key with keycode 23 down
+check at teleport 0
+ghost 0 is free now
+ghost 1 is free now
 ghost 2 is free now
 ghost 3 is free now
-ghost 1 is free now
-Key with keycode 19 down
-ghost 0 is free now
+Key with keycode 4 down
 Key with keycode 1 down
-Key with keycode 23 down
-Key with keycode 23 down
 Key with keycode 4 down
-Pacman eats Speedbean
-start powerup timer
-Key with keycode 19 down
-Key with keycode 4 down
-Key with keycode 19 down
-Key with keycode 1 down
-Key with keycode 19 down
-Key with keycode 4 down
-Key with keycode 19 down
-Key with keycode 4 down
-Key with keycode 23 down
 collide with ghost
 
 Menu scene created
 Change scene from Start to Menu
-loaded image: Assets/settings.png
-loaded image: Assets/settings2.png
-loaded image: Assets/title.png
-Window close button clicked
-Game end
