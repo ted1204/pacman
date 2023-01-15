@@ -28,7 +28,6 @@ const int speed_up_duration = 8;
 
 int bean_ate = 0;
 int game_main_Score = 0;
-int scoreboard[10];
 bool game_over = false;
 bool game_win = false;
 Pacman* pman;
@@ -55,7 +54,9 @@ static void draw_hitboxes(void);
 
 static void init(void) {
 	game_over = false;
+	game_win = false;
 	game_main_Score = 0;
+	bean_ate = 0;
 	// create map
 	basic_map = create_map("Assets / map_nthu.txt");
 	// [TODO]
@@ -125,9 +126,6 @@ static void checkItem(void) {
 	// [HACKATHON 1-3]
 	// TODO: check which item you are going to eat and use `pacman_eatItem` to deal with it.
 	
-	if (bean_ate == basic_map->beansCount) {//
-		game_win = true;
-	}
 	switch (basic_map->map[Grid_y][Grid_x])
 	{
 	case '.':
@@ -151,6 +149,7 @@ static void checkItem(void) {
 		}
 		basic_map->map[Grid_y][Grid_x] = ' ';
 		break;
+
 	case 'T':
 		if ((Grid_x == teleport_location[0][1]) && (Grid_y == teleport_location[0][0])) {
 		game_log("check at teleport 0");
@@ -175,6 +174,7 @@ static void checkItem(void) {
 			}
 		}
 		break;
+
 	case 'S':
 		pacman_eatItem(pman, 'S');
 		game_log("Pacman eats Speedbean");
@@ -186,10 +186,14 @@ static void checkItem(void) {
 		game_log("start powerup timer");
 		basic_map->map[Grid_y][Grid_x] = ' ';
 		break;
+
 	default:
 		break;	
 	}
 	
+	if (bean_ate == 5) {//basic_map->beansCount
+		game_win = true;
+	}
 	// [HACKATHON 1-4]
 	// erase the item you eat from map
 	// be careful no erasing the wall block.
@@ -341,8 +345,6 @@ static void destroy(void) {
 		free map array, Pacman and ghosts
 		free(scoreboard)
 	*/
-	free(speed_up_timer);
-	free(power_up_timer);
 }
 
 static void on_key_down(int key_code) {

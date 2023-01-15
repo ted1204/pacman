@@ -19,6 +19,7 @@ static ALLEGRO_SAMPLE_ID menuBGM;
 static int gameTitleW ;
 static int gameTitleH ;
 
+
 // [HACKATHON 3]
 // TARGET : use a clickable button to enter setting scene.
 // For `Button` struct(object) is defined in `scene_menu_object.h` and `scene_menu_object.c`
@@ -27,7 +28,7 @@ static int gameTitleH ;
 //	[HACKATHON 3-1]
 //	TODO: Declare variable for button
 //	Uncomment and fill the code below
- static Button btnSettings;
+static Button btnSettings;
 
 static void init() {
 
@@ -42,6 +43,11 @@ static void init() {
 	stop_bgm(menuBGM);
 	menuBGM = play_bgm(themeMusic, music_volume);
 
+}
+
+static void on_mouse_down() {
+	if (btnSettings.hovered)
+		game_change_scene(scene_settings_create());
 }
 
 
@@ -74,7 +80,7 @@ static void draw() {
 		// [HACKATHON 3-3]
 		// TODO: Draw button
 		// Uncomment and fill the code below
-		 drawButton(btnSettings);
+	drawButton(btnSettings);
 
 }
 
@@ -97,10 +103,6 @@ static void on_mouse_move(int a, int mouse_x, int mouse_y, int f) {
 // 	      `Enter the setting scene`
 //	Uncomment and fill the code below
 
-static void on_mouse_down() {
-	if (btnSettings.hovered)
-		game_change_scene(scene_settings_create());
-}
 
 
 static void destroy() {

@@ -2,6 +2,7 @@ There are total 2 supported mouse buttons
 Allegro5 initialized
 Game begin
 loaded font: Assets/Minecraft.ttf with size 30
+loaded audio: Assets/Music/setting_music.ogg
 loaded audio: Assets/Music/original_theme.ogg
 loaded audio: Assets/Music/winning_music.ogg
 loaded audio: Assets/Music/pacman-chomp.ogg
@@ -13,63 +14,23 @@ loaded image: Assets/settings.png
 loaded image: Assets/settings2.png
 loaded image: Assets/title.png
 Game start event loop
-Key with keycode 216 down
-Key with keycode 67 down
-Start scene created
-Change scene from Menu to Start
-Assets / map_nthu.txt
-
-loaded image: Assets/pacman_move.png
-loaded image: Assets/pacman_die.png
-creating ghost 0
-
-loaded image: Assets/ghost_flee.png
-loaded image: Assets/ghost_dead.png
-loaded image: Assets/ghost_move_red.png
-creating ghost 1
-
-loaded image: Assets/ghost_flee.png
-loaded image: Assets/ghost_dead.png
-loaded image: Assets/ghost_move_pink.png
-creating ghost 2
-
-loaded image: Assets/ghost_flee.png
-loaded image: Assets/ghost_dead.png
-loaded image: Assets/ghost_move_orange.png
-creating ghost 3
-
-loaded image: Assets/ghost_flee.png
-loaded image: Assets/ghost_dead.png
-loaded image: Assets/ghost_move_blue.png
-Key with keycode 4 down
-Key with keycode 1 down
-Key with keycode 4 down
-Key with keycode 1 down
-Pacman eats Powerbean
-start powerup timer
-ghost 0 start flee
-ghost 1 start flee
-ghost 2 start flee
-ghost 3 start flee
-Key with keycode 4 down
-Key with keycode 23 down
-Key with keycode 4 down
-Key with keycode 23 down
-Key with keycode 4 down
-Key with keycode 23 down
-Key with keycode 4 down
-check at teleport 1
-Key with keycode 1 down
-Key with keycode 23 down
-check at teleport 0
-ghost 0 is free now
-ghost 1 is free now
-ghost 2 is free now
-ghost 3 is free now
-Key with keycode 4 down
-Key with keycode 1 down
-Key with keycode 4 down
-collide with ghost
-
+Settings scene created
+Change scene from Menu to Settings
+loaded image: Assets/volumeup1.png
+loaded image: Assets/volumeup2.png
+loaded image: Assets/volumedown1.png
+loaded image: Assets/volumedown2.png
+loaded image: Assets/volumeup1.png
+loaded image: Assets/volumeup2.png
+loaded image: Assets/volumedown1.png
+loaded image: Assets/volumedown2.png
+loaded image: Assets/return1.png
+loaded image: Assets/return2.png
+loaded font: Assets/Minecraft.ttf with size 40
 Menu scene created
-Change scene from Start to Menu
+Change scene from Settings to Menu
+loaded image: Assets/settings.png
+loaded image: Assets/settings2.png
+loaded image: Assets/title.png
+Window close button clicked
+Game end

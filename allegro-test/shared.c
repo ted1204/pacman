@@ -10,6 +10,7 @@ ALLEGRO_FONT* font_pirulen_32;
 ALLEGRO_FONT* font_pirulen_24;
 ALLEGRO_SAMPLE* themeMusic = NULL;
 ALLEGRO_SAMPLE* winMusic = NULL;
+ALLEGRO_SAMPLE* settingMusic = NULL;
 ALLEGRO_SAMPLE* PACMAN_MOVESOUND = NULL;
 ALLEGRO_SAMPLE* PACMAN_DEATH_SOUND = NULL;
 ALLEGRO_FONT* menuFont = NULL;
@@ -27,6 +28,7 @@ bool gameDone = false;
 void shared_init(void) {
 	
 	menuFont = load_font("Assets/Minecraft.ttf", fontSize);
+	settingMusic = load_audio("Assets/Music/setting_music.ogg");
 	themeMusic = load_audio("Assets/Music/original_theme.ogg");
 	winMusic = load_audio("Assets/Music/winning_music.ogg");
 	PACMAN_MOVESOUND = load_audio("Assets/Music/pacman-chomp.ogg");

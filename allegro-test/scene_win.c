@@ -49,7 +49,6 @@ static void init() {
 }
 
 
-
 static void draw() {
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -59,6 +58,8 @@ static void draw() {
 	const float offset_h = (SCREEN_H >> 1) - 0.5 * scale * gameWinH;
 
 	//draw title image
+	/*
+	*/
 	al_draw_scaled_bitmap(
 		gameWin,
 		0, 0,
@@ -71,10 +72,11 @@ static void draw() {
 		menuFont,
 		al_map_rgb(255, 255, 255),
 		SCREEN_W / 2,
-		SCREEN_H - 150,
+		300,
 		ALLEGRO_ALIGN_CENTER,
 		"PRESS \"ENTER\""
 	);
+
 
 	// [HACKATHON 3-3]
 	// TODO: Draw button

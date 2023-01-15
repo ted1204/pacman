@@ -15,6 +15,8 @@ extern ALLEGRO_FONT* font_pirulen_32;
 extern ALLEGRO_FONT* font_pirulen_24;
 extern ALLEGRO_SAMPLE* themeMusic;
 extern ALLEGRO_SAMPLE* winMusic;
+extern ALLEGRO_SAMPLE* settingMusic;
+
 extern ALLEGRO_SAMPLE* PACMAN_MOVESOUND;
 extern ALLEGRO_SAMPLE* PACMAN_DEATH_SOUND;
 
@@ -23,7 +25,6 @@ extern int fontSize;
 extern float music_volume;
 extern float effect_volume;
 extern bool gameDone;
-
 // Initialize shared variables and resources.
 // Allows the game to perform any initialization it needs before
 // starting to run.

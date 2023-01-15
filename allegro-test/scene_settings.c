@@ -67,7 +67,7 @@ static void init() {
 	btnreturn = button_create(20, 20, 50, 50, "Assets/return1.png", "Assets/return2.png");
 	controltext = load_font("Assets/Minecraft.ttf", 40);
 	stop_bgm(settingBGM);
-	settingBGM = play_bgm(themeMusic, music_volume);
+	settingBGM = play_bgm(settingMusic, music_volume);
 }
 
 static void draw(void ){
