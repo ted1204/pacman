@@ -119,28 +119,28 @@ static void on_mouse_down() {
 		if (music_volume + 0.5 <= MAX_VOLUME) {
 			music_volume += 0.5;
 		}
-		settingBGM = play_bgm(themeMusic, music_volume);
+		settingBGM = play_bgm(settingMusic, music_volume);
 	}
 	if (btnvolumedown.hovered) {
 		stop_bgm(settingBGM);
 		if (music_volume - 0.5 >= 0) {
 			music_volume -= 0.5;
 		}
-		settingBGM = play_bgm(themeMusic, music_volume);
+		settingBGM = play_bgm(settingMusic, music_volume);
 	}
 	if (btnseffectup.hovered) {
 		stop_bgm(settingBGM);
 		if (effect_volume + 0.5 <= MAX_VOLUME) {
 			effect_volume += 0.5;
 		}
-		settingBGM = play_bgm(themeMusic, music_volume);
+		settingBGM = play_bgm(settingMusic, music_volume);
 	}
 	if (btnseffectdown.hovered) {
 		stop_bgm(settingBGM);
 		if (effect_volume - 0.5 >= 0) {
 			effect_volume -= 0.5;
 		}
-		settingBGM = play_bgm(themeMusic, music_volume);
+		settingBGM = play_bgm(settingMusic, music_volume);
 	}
 }
 
