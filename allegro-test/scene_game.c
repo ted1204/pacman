@@ -348,6 +348,14 @@ static void destroy(void) {
 		free map array, Pacman and ghosts
 		free(scoreboard)
 	*/
+	al_destroy_timer(power_up_timer);
+	al_destroy_timer(speed_up_timer);
+	pacman_destroy(pman);
+	delete_map(basic_map);
+	for (int i = 0; i < GHOST_NUM; ++i) {
+		ghost_destory(ghosts[i]);
+	}
+
 }
 
 static void on_key_down(int key_code) {
