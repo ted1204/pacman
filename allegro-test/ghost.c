@@ -372,7 +372,7 @@ void ghost_move_script_GO_OUT(Ghost* ghost, Map* M) {
 	else
 		ghost->status = FREEDOM;
 }
-void ghost_move_script_FLEE(Ghost* ghost, Map* M, const Pacman * const pacman) {
+void ghost_move_script_FLEE(Ghost* ghost, Map* M, const Pacman * const pacman, bool firsttoflee) {
 	// [TODO]
 	Directions shortestDirection = shortest_path_direc(M, ghost->objData.Coord.x, ghost->objData.Coord.y, pacman->objData.Coord.x, pacman->objData.Coord.y);
 	// Description:
@@ -382,27 +382,44 @@ void ghost_move_script_FLEE(Ghost* ghost, Map* M, const Pacman * const pacman) {
 	// In this way, ghost will escape from pacman.
 	static Directions proba[4];
 	int cnt = 0;
-	for (Directions i = 1; i <= 4; ++i) {
-		if (ghost_movable(ghost, M, i, true)){
-			if (ghost->objData.facing + i == 5) continue;	
-			proba[cnt++] = i;
-		}
-	}
-	int idx = -1;
-	if (cnt == 0) ghost_NextMove(ghost, 5 - ghost->objData.facing);
-	else if (cnt >= 2) {
-		for (int i = 0; i < cnt; ++i) {
-			if (proba[i] == shortestDirection) idx = i;
-		}
-		if (idx != -1) {
-			for (int i = idx; i < cnt - 1; ++i) {
-				proba[i] = proba[i + 1];
+	if (firsttoflee) {
+		for (Directions i = 1; i <= 4; ++i) {
+			if (ghost_movable(ghost, M, i, true)) {
+				if (i == shortestDirection) continue;
+				proba[cnt++] = i;
 			}
 		}
-		ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 2)]);
+		if(cnt == 0){
+			ghost_NextMove(ghost, shortestDirection);
+		}
+		else {
+			ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 1)]);
+		}
 	}
 	else {
-		ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 1)]);
+		for (Directions i = 1; i <= 4; ++i) {
+			if (ghost_movable(ghost, M, i, true)){
+				if (ghost->objData.facing + i == 5) continue;	
+				proba[cnt++] = i;
+			}
+		}
+		int idx = -1;
+		if (cnt == 0) ghost_NextMove(ghost, 5 - ghost->objData.facing);
+		else if (cnt >= 2) {
+			for (int i = 0; i < cnt; ++i) {
+				if (proba[i] == shortestDirection) idx = i;
+			}
+			if (idx != -1) {
+				for (int i = idx; i < cnt - 1; ++i) {
+					proba[i] = proba[i + 1];
+				}
+			}
+			ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 2)]);
+		}
+		else {
+			ghost_NextMove(ghost, proba[generateRandomNumber(0, cnt - 1)]);
+		}
 	}
+
 }
 

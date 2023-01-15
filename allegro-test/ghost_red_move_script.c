@@ -12,6 +12,7 @@ extern const int cage_grid_x, cage_grid_y;
 /* Declare static function prototypes */
 static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M);
 static void ghost_red_move_script_BLOCKED(Ghost* ghost, Map* M);
+bool first_toggle_to_flee = false;
 
 static void ghost_red_move_script_FREEDOM(Ghost* ghost, Map* M) {
 	// [HACKATHON 2-4]
@@ -90,7 +91,9 @@ void ghost_red_move_script(Ghost* ghost, Map* M, Pacman* pacman) {
 			}
 			break;
 		case FLEE:
-			ghost_move_script_FLEE(ghost, M, pacman);
+			ghost_move_script_FLEE(ghost, M, pacman, first_toggle_to_flee);
+			first_toggle_to_flee = false;
+			game_log("tuen first_toggle_to_flee to false");
 			break;
 		default:
 			break;

@@ -40,7 +40,7 @@ static void init() {
 	//	Uncomment and fill the code below
 	//btnSettings = button_create(730, 20, 50, 50, "...", "...");
 
-	gameWin = load_bitmap("Assets/win.png");
+	gameWin = load_bitmap("Assets/winning_picture.png");
 	gameWinW = al_get_bitmap_width(gameWin);
 	gameWinH = al_get_bitmap_height(gameWin);
 	stop_bgm(winBGM);

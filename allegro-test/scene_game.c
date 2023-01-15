@@ -25,6 +25,7 @@ ALLEGRO_TIMER* power_up_timer;
 ALLEGRO_TIMER* speed_up_timer;
 const int power_up_duration = 10;
 const int speed_up_duration = 8;
+extern bool first_toggle_to_flee;
 
 int bean_ate = 0;
 int game_main_Score = 0;
@@ -141,6 +142,8 @@ static void checkItem(void) {
 		game_main_Score += 100;
 		bean_ate++;
 		pman->powerUp = true;	
+		first_toggle_to_flee = true;
+		game_log("tnru first_toggle_to_flee to true");
 		al_set_timer_count(power_up_timer, 0);
 		al_start_timer(power_up_timer);
 		game_log("start powerup timer");
@@ -191,7 +194,7 @@ static void checkItem(void) {
 		break;	
 	}
 	
-	if (bean_ate == 5) {//basic_map->beansCount
+	if (bean_ate == basic_map->beansCount) {//
 		game_win = true;
 	}
 	// [HACKATHON 1-4]
